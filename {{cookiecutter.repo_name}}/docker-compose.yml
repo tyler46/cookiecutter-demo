@@ -1,0 +1,25 @@
+{% if cookiecutter.use_db == 'y' -%}
+db:
+    image: postgres
+    env_file: .env
+    restart: always
+    ports:
+        - "5432"
+{%- endif %}
+web:
+    build: .
+    env_file: .env
+    {% if cookiecutter.use_db == 'y' %}
+    links:
+        - db:db
+    {% endif %}
+nginx:
+    build: .
+    dockerfile: ./config/nginx/Dockerfile
+    restart: always
+    links:
+        - web:web
+    ports:
+        - "80:80"
+        - "443:443"
+

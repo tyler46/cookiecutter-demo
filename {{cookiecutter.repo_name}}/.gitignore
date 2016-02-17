@@ -1,0 +1,10 @@
+*.py[cod]
+
+# Installer logs
+pip-log.txt
+
+# vim
+.swp
+
+# decouple
+.env

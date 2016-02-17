@@ -1,0 +1,9 @@
+{
+  "project_name": "An bottle app example.",
+  "repo_name": "{{ cookiecutter.project_name|replace(' ', '_') }}",
+  "author_name": "Your name",
+  "email": "Your email",
+  "description": "A short description of the project",
+  "use_db": "y",
+  "expose_api": "n"
+}
