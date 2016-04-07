@@ -34,10 +34,5 @@ It will prompt the following questsion. Answer them:
     use_db [y]: y
     expose_api [n]: n
 
-Enter the project and take a look around:
-
-    $ cd vtrans-geld
-    $ ls
-
-
+Enter the project and take a look around.
 Basic structure is complete, start building something nice.
