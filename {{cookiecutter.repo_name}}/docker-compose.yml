@@ -5,11 +5,11 @@ db:
     restart: always
     ports:
         - "5432"
-{%- endif %}
+{% endif %}
 web:
     build: .
     env_file: .env
-    {% if cookiecutter.use_db == 'y' %}
+    {% if cookiecutter.use_db == 'y'-%}
     links:
         - db:db
     {% endif %}
@@ -22,4 +22,3 @@ nginx:
     ports:
         - "80:80"
         - "443:443"
-

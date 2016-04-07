@@ -14,8 +14,8 @@ PORT = config('PORT', cast=int)
 
 {% if cookiecutter.use_db == 'y' -%}
 DATABASE_URL = config('DATABASE_URL')
-{%- endif %}
+{% endif -%}
 
-{% if cookiecutter.expose_api == 'n' -%}
+{%- if cookiecutter.expose_api == 'n' -%}
 TEMPLATE_DIRS = config('TEMPLATE_DIRS', default=path('templates'))
-{%- endif %}
+{% endif -%}

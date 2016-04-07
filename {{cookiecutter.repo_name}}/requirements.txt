@@ -2,5 +2,5 @@ bottle
 {% if cookiecutter.use_db == "y" -%}
 bottle-sqlalchemy==0.4.3
 psycopg2
-{%- endif -%}
+{%- endif %}
 python-decouple

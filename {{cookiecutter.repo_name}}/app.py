@@ -1,6 +1,4 @@
-{%- if cookiecutter.expose_api == 'y' -%}
-import json
-{%- endif %}
+{%- if cookiecutter.expose_api == 'y' -%}import json{%- endif %}
 from bottle import (
     default_app, error, {% if cookiecutter.expose_api == 'n' %}HTTPError,{% endif %} response, run, {% if cookiecutter.expose_api == 'n' %}template, TEMPLATE_PATH{% endif %}
 )
@@ -8,22 +6,22 @@ from bottle import (
 from bottle.ext import sqlalchemy as sqlaplugin
 
 import models
-{%- endif %}
+{% endif -%}
 import settings
 
 
 app = default_app()
 
-{% if cookiecutter.use_db == 'y' %}
+{% if cookiecutter.use_db == 'y' -%}
 db_plugin = sqlaplugin.SQLAlchemyPlugin(models.engine, models.Base.metadata,
                                         create=True)
 app.install(db_plugin)
-{% endif %}
+{%- endif %}
 {% if cookiecutter.expose_api == 'n' -%}
 TEMPLATE_PATH.append(settings.TEMPLATE_DIRS)
 {%- endif %}
 
-{% if cookiecutter.use_db == 'y' %}
+{% if cookiecutter.use_db == 'y' -%}
 @app.get('/:name')
 def view(name, db):
     entity = db.query(models.Entity).filter_by(name=name).first()
@@ -36,14 +34,14 @@ def view(name, db):
             'name': entity.name
         }
         return template('entity', data)
-        {% endif %}
+        {%- endif -%}
 
     {% if cookiecutter.expose_api == 'y' %}
     response.content_type = 'application/json'
     response.status = 410
     response.body = json.dumps({'message': 'entity not found'})
     return response
-    {% else -%}
+    {% else %}
     return HTTPError(404, 'Entity not found.')
     {%- endif %}
 
@@ -60,7 +58,7 @@ def create(name, db):
     {% else -%}
     return 'CREATED'
     {%- endif %}
-{% endif %}
+{%- endif %}
 {%- if cookiecutter.expose_api == 'y' %}
 @app.get('/')
 def index():
